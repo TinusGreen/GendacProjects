@@ -18,7 +18,21 @@ namespace GendacCoreApp.WinPhone
             SupportedOrientations = SupportedPageOrientation.PortraitOrLandscape;
 
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new GendacCoreApp.App());
+        }
+
+        private void btnMaps_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Maps.xaml", UriKind.Relative));
+        }
+
+        private void btnComms_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Comms.xaml", UriKind.Relative));
+        }
+
+        private void btnVision_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Vision.xaml", UriKind.Relative));
         }
     }
 }

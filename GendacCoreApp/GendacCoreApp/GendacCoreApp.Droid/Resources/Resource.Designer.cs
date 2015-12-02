@@ -28,6 +28,22 @@ namespace GendacCoreApp.Droid
 		{
 		}
 		
+		public partial class Array
+		{
+			
+			// aapt resource value: 0x7f040000
+			public const int planets_array = 2130968576;
+			
+			static Array()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Array()
+			{
+			}
+		}
+		
 		public partial class Attribute
 		{
 			
@@ -60,11 +76,82 @@ namespace GendacCoreApp.Droid
 			}
 		}
 		
-		public partial class Style
+		public partial class Id
+		{
+			
+			// aapt resource value: 0x7f060000
+			public const int Header = 2131099648;
+			
+			// aapt resource value: 0x7f060001
+			public const int btnBLE = 2131099649;
+			
+			// aapt resource value: 0x7f060002
+			public const int btnCON = 2131099650;
+			
+			// aapt resource value: 0x7f060006
+			public const int btnComms = 2131099654;
+			
+			// aapt resource value: 0x7f060005
+			public const int btnMaps = 2131099653;
+			
+			// aapt resource value: 0x7f060003
+			public const int btnNFC = 2131099651;
+			
+			// aapt resource value: 0x7f060007
+			public const int btnVision = 2131099655;
+			
+			// aapt resource value: 0x7f060004
+			public const int textView1 = 2131099652;
+			
+			static Id()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Id()
+			{
+			}
+		}
+		
+		public partial class Layout
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int Mono_Android_Theme_Splash = 2130903040;
+			public const int BLE = 2130903040;
+			
+			// aapt resource value: 0x7f030001
+			public const int comms = 2130903041;
+			
+			// aapt resource value: 0x7f030002
+			public const int CONF = 2130903042;
+			
+			// aapt resource value: 0x7f030003
+			public const int homescreen = 2130903043;
+			
+			// aapt resource value: 0x7f030004
+			public const int maps = 2130903044;
+			
+			// aapt resource value: 0x7f030005
+			public const int NFC = 2130903045;
+			
+			// aapt resource value: 0x7f030006
+			public const int vision = 2130903046;
+			
+			static Layout()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Layout()
+			{
+			}
+		}
+		
+		public partial class Style
+		{
+			
+			// aapt resource value: 0x7f050000
+			public const int Mono_Android_Theme_Splash = 2131034112;
 			
 			static Style()
 			{

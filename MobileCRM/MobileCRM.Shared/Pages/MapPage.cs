@@ -78,9 +78,51 @@ namespace MobileCRM.Shared.Pages
                 _map.MoveToRegion(new MapSpan(_map.VisibleRegion.Center, latlongdegrees, latlongdegrees));
             };
 
+            Dictionary<string, Int16> nameToColor = new Dictionary<string, Int16>
+            {
+                { "Street", 1 }, { "Hybrid", 2 },
+                { "Saterlite", 3 }
+            };
+
+            Picker picker = new Picker
+            {
+                Title = "View",
+            };
+
+            foreach (string colorName in nameToColor.Keys)
+            {
+                picker.Items.Add(colorName);
+            }
+
+            picker.SelectedIndexChanged += (sender, args) =>
+            {
+                if (picker.SelectedIndex == -1)
+                {
+                    _map.MapType = MapType.Street;
+                }
+                else
+                {
+                    string viewName = picker.Items[picker.SelectedIndex];
+                    if (nameToColor[viewName] == 1)
+                    {
+                        _map.MapType = MapType.Street;
+                    }
+                    if (nameToColor[viewName] == 2)
+                    {
+                        _map.MapType = MapType.Hybrid;
+                    }
+                    if (nameToColor[viewName] == 3)
+                    {
+                        _map.MapType = MapType.Satellite;
+                    }
+
+                }
+            };
+
             var stack = new StackLayout { Spacing = 0 };
             Device.StartTimer(TimeSpan.FromSeconds(10), updateMap);
             Device.StartTimer(TimeSpan.FromSeconds(1), updateMapDisp);
+
 
 
 
@@ -111,7 +153,7 @@ namespace MobileCRM.Shared.Pages
                     });
             };
 
-            stack.Children.Add(searchAddress);
+          //  stack.Children.Add(searchAddress);
 
 #elif WINDOWS_PHONE
             //    ToolbarItems.Add(new ToolbarItem("filter", "filter.png", async () =>
@@ -132,6 +174,7 @@ namespace MobileCRM.Shared.Pages
 
             stack.Children.Add(_map);
             stack.Children.Add(slider);
+            stack.Children.Add(picker);
             Content = stack;
         }
 

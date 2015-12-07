@@ -4219,8 +4219,8 @@ namespace MobileCRMAndroid
 			// aapt resource value: 0x7f05000f
 			public const int common_android_wear_update_title = 2131034127;
 			
-			// aapt resource value: 0x7f05001d
-			public const int common_google_play_services_api_unavailable_text = 2131034141;
+			// aapt resource value: 0x7f05001f
+			public const int common_google_play_services_api_unavailable_text = 2131034143;
 			
 			// aapt resource value: 0x7f05000d
 			public const int common_google_play_services_enable_button = 2131034125;
@@ -4267,11 +4267,11 @@ namespace MobileCRMAndroid
 			// aapt resource value: 0x7f050002
 			public const int common_google_play_services_notification_ticker = 2131034114;
 			
-			// aapt resource value: 0x7f05001f
-			public const int common_google_play_services_sign_in_failed_text = 2131034143;
+			// aapt resource value: 0x7f050021
+			public const int common_google_play_services_sign_in_failed_text = 2131034145;
 			
-			// aapt resource value: 0x7f05001e
-			public const int common_google_play_services_sign_in_failed_title = 2131034142;
+			// aapt resource value: 0x7f050020
+			public const int common_google_play_services_sign_in_failed_title = 2131034144;
 			
 			// aapt resource value: 0x7f050018
 			public const int common_google_play_services_unknown_issue = 2131034136;
@@ -4297,14 +4297,14 @@ namespace MobileCRMAndroid
 			// aapt resource value: 0x7f050012
 			public const int common_google_play_services_updating_title = 2131034130;
 			
+			// aapt resource value: 0x7f05001e
+			public const int common_open_on_phone = 2131034142;
+			
 			// aapt resource value: 0x7f05001c
-			public const int common_open_on_phone = 2131034140;
+			public const int common_signin_button_text = 2131034140;
 			
-			// aapt resource value: 0x7f050020
-			public const int common_signin_button_text = 2131034144;
-			
-			// aapt resource value: 0x7f050021
-			public const int common_signin_button_text_long = 2131034145;
+			// aapt resource value: 0x7f05001d
+			public const int common_signin_button_text_long = 2131034141;
 			
 			// aapt resource value: 0x7f050042
 			public const int hello = 2131034178;

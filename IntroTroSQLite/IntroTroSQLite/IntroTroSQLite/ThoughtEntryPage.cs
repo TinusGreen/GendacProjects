@@ -33,19 +33,19 @@ namespace IntroToSQLite
                 Text = "Add"
             };
 
-            button.Clicked += async (object sender, EventArgs e) => {
-                string Input = entry.Text;
-                string Name = entry2.Text;
-                double Lat = Convert.ToDouble(Input.Substring(0, Input.IndexOf(" ",0) - 1));
-                double Lon = Convert.ToDouble(Input.Substring(Input.IndexOf(" ", 0) + 1, Input.Length));
+         //   button.Clicked += async (object sender, EventArgs e) => {
+          //      string Input = entry.Text;
+          //      string Name = entry2.Text;
+          //      double Lat = Convert.ToDouble(Input.Substring(0, Input.IndexOf(" ",0) - 1));
+           //     double Lon = Convert.ToDouble(Input.Substring(Input.IndexOf(" ", 0) + 1, Input.Length));
 
-                _database.AddThought(Name, Lat, Lon);
+           //     _database.AddThought(Name, Lat, Lon);
 
-                await Navigation.PopAsync();
+           //    await Navigation.PopAsync();
 
 
-                _parent.Refresh();
-            };
+          //      _parent.Refresh();
+          //  };
 
             Content = new StackLayout
             {

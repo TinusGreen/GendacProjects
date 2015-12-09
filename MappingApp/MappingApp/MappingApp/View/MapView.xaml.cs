@@ -36,9 +36,13 @@ namespace MappingApp.View
 
             var zoomLat = _map.VisibleRegion == null ? 6.0 : _map.VisibleRegion.LatitudeDegrees;
             var zoomLon = _map.VisibleRegion == null ? 6.0 : _map.VisibleRegion.LongitudeDegrees;
-            _map.MoveToRegion(new MapSpan(_mapViewModel.UserPosition, zoomLat, zoomLon));
+            var zoomRad = _map.VisibleRegion == null ? 6.0 : _map.VisibleRegion.Radius.Miles;
+            
+            _map.MoveToRegion(new MapSpan(_mapViewModel.UserPosition, zoomLat, zoomLon ));
 
+            // _map.MoveToRegion(MapSpan.FromCenterAndRadius(_mapViewModel.UserPosition, Distance.FromMiles(zoomRad)));
             _map.Pins.Add(_previousPin);
+            MapSpan temp = _map.VisibleRegion;
         }
     }
 }

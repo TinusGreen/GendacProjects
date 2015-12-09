@@ -4,6 +4,6 @@
              x:Class="MappingApp.View.MainView">
   <StackLayout>
     <Label Text="{Binding Address}" VerticalOptions="Center" HorizontalOptions="Center" />
-    <Button Text="Mapping System" Command="{Binding Maps}" />
+    <Button Text="{Binding NavigateToViewModelButtonText}" Command="{Binding NavigateToViewModel}"/>
   </StackLayout>
 </ContentPage>

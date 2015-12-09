@@ -1,4 +1,5 @@
-﻿using XLabs.Ioc;
+﻿using XLabs.Forms.Services;
+using XLabs.Ioc;
 
 namespace MappingApp.ViewModel
 {
@@ -10,6 +11,7 @@ namespace MappingApp.ViewModel
             container.Register<IDependencyContainer>(container);
             container.Register<MainViewModel, MainViewModel>();
             container.Register<MapViewModel, MapViewModel>();
+            container.Register<CameraViewModel, CameraViewModel>();
             Resolver.SetResolver(container.GetResolver());
             return container;
        }
@@ -22,6 +24,11 @@ namespace MappingApp.ViewModel
         public static MapViewModel Map
         {
             get { return Resolver.Resolve<MapViewModel>(); }
+        }
+
+        public static CameraViewModel Camera
+        {
+            get { return Resolver.Resolve<CameraViewModel>(); }
         }
     }
 }

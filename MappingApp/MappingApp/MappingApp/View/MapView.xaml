@@ -7,6 +7,6 @@
   <StackLayout>
     <Label Text="{Binding Heading}" VerticalOptions="Start" HorizontalOptions="Start" />
     <Button Text="Get Position" Command="{Binding GetPosition}" />
-    <maps:Map WidthRequest="320" HeightRequest="200" x:Name="_map" MapType="Street"/>
+    <maps:Map WidthRequest="320" HeightRequest="200" x:Name="_map" MapType="Street" IsShowingUser="True" />
   </StackLayout>
 </ContentPage>

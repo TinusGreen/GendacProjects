@@ -9,7 +9,9 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using MappingApp.WinPhone.Resources;
 using XLabs.Ioc;
+using XLabs.Platform.Services;
 using XLabs.Platform.Services.Geolocation;
+using XLabs.Platform.Services.Media;
 
 namespace MappingApp.WinPhone
 {
@@ -119,7 +121,7 @@ namespace MappingApp.WinPhone
             //Set 
             var container = ViewModelLocator.Init();
             container.Register<IGeolocator, Geolocator>();
-
+            container.Register<IMediaPicker, MediaPicker>();
             // Create the frame but don't set it as RootVisual yet; this allows the splash
             // screen to remain active until the application is ready to render.
             RootFrame = new PhoneApplicationFrame();

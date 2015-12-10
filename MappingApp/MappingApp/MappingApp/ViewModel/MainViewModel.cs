@@ -7,31 +7,30 @@ namespace MappingApp.ViewModel
 {
     public class MainViewModel : XLabs.Forms.Mvvm.ViewModel
     {
-        private Command _navigateToViewModel;
-        private string _navigateToViewModelButtonText = "Navigate to another view model";
-        private string _address = "Hello World";
-        public string Address
+        private string _heading = "Main Page";
+
+
+        public MainViewModel()
         {
-            get { return _address; }
+            NavigateToMappingView = new Command(() => Navigation.PushAsync<MapViewModel>());
+            NavigateToCommunicationView = new Command(() => Navigation.PushAsync<CameraViewModel>());
+            NavigateToComputerView = new Command(() => Navigation.PushAsync<CameraViewModel>());
+        }
+
+        public Command NavigateToMappingView { get; }
+        public Command NavigateToCommunicationView { get; }
+        public Command NavigateToComputerView { get; }
+        
+
+        public string Heading
+        {
+            get { return _heading; }
             set
             {
-                SetProperty(ref _address, value, () => Address);
+                SetProperty(ref _heading, value, () => Heading);
             }
         }
 
-
-        public string NavigateToViewModelButtonText
-        {
-            get
-            {
-                return _navigateToViewModelButtonText;
-            }
-            set
-            {
-                SetProperty(ref _navigateToViewModelButtonText, value);
-            }
-        }
+        
     }
-
-    
 }

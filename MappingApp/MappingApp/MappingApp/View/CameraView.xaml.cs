@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MappingApp.Services;
 
 using Xamarin.Forms;
 
@@ -14,7 +15,7 @@ namespace MappingApp.View
         public CameraView()
         {
             InitializeComponent();
-            BindingContext = ViewModelLocator.Camera;
+        //    BindingContext = ViewModelLocator.Camera;
         }
     }
 }

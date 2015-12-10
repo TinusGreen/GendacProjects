@@ -1,4 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
@@ -30,9 +35,9 @@ namespace MappingApp.ViewModel
         private ImageSource _imageSource;
 
         /// <summary>
-        /// The video info.
+        /// The process info
         /// </summary>
-        private string _videoInfo;
+        private string _info;
 
         /// <summary>
         /// The take picture command.
@@ -49,16 +54,27 @@ namespace MappingApp.ViewModel
         /// </summary>
         private Command _selectVideoCommand;
 
+        private ObservableCollection<String> _menuOptions = new ObservableCollection<string>();
+
         private string _status;
+        private string _heading = "Computer Vision System";
 
         ////private CancellationTokenSource cancelSource;
 
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="CameraViewModel" /> class.
         /// </summary>
         public CameraViewModel()
         {
             Setup();
+            
+        }
+
+        public string Heading
+        {
+            get { return _heading; }
+            set { SetProperty(ref _heading, value, () => Heading); }
         }
 
         /// <summary>
@@ -77,21 +93,43 @@ namespace MappingApp.ViewModel
             }
         }
 
-        
+        public IEnumerable<string> MenuOptions
+        {
+            get
+            {
+                if (_menuOptions.Count == 0)
+                {
+                    _menuOptions.Add("Hello World");
+                    _menuOptions.Add("Bla Bla");
+                }
+                return _menuOptions;
+            }
+        }
+
+        private String _selectedOption;
+
+        public String SelectedOption
+        {
+            get { return _selectedOption; }
+            set { _selectedOption = value; }
+        }
+
+
+
 
         /// <summary>
         /// Gets or sets the video info.
         /// </summary>
         /// <value>The video info.</value>
-        public string VideoInfo
+        public string Info
         {
             get
             {
-                return _videoInfo;
+                return _info;
             }
             set
             {
-                SetProperty(ref _videoInfo, value);
+                SetProperty(ref _info, value, () => Info);
             }
         }
 
@@ -108,21 +146,6 @@ namespace MappingApp.ViewModel
                                                                        () => true));
             }
         }
-
-        /// <summary>
-        /// Gets the select video command.
-        /// </summary>
-        /// <value>The select picture command.</value>
-        public Command SelectVideoCommand
-        {
-            get
-            {
-                return _selectVideoCommand ?? (_selectVideoCommand = new Command(
-                                                                       async () => await SelectVideo(),
-                                                                       () => true));
-            }
-        }
-
         /// <summary>
         /// Gets the select picture command.
         /// </summary>
@@ -159,11 +182,7 @@ namespace MappingApp.ViewModel
                 return;
             }
 
-         //   var device = Resolver.Resolve<IDevice>();
-
-            ////RM: hack for working on windows phone? 
             _mediaPicker = Resolver.Resolve<IMediaPicker>();
-           // _mediaPicker = DependencyService.Get<IMediaPicker>() ?? device.MediaPicker;
         }
 
         /// <summary>
@@ -191,6 +210,11 @@ namespace MappingApp.ViewModel
                     var mediaFile = t.Result;
 
                     ImageSource = ImageSource.FromStream(() => mediaFile.Source);
+
+                    if (SelectedOption == "Hello World")
+                    {
+                        Info = "Gekry";
+                    }
 
                     return mediaFile;
                 }
@@ -220,40 +244,6 @@ namespace MappingApp.ViewModel
             catch (System.Exception ex)
             {
                 Status = ex.Message;
-            }
-        }
-
-        /// <summary>
-        /// Selects the video.
-        /// </summary>
-        /// <returns>Select Video Task.</returns>
-        private async Task SelectVideo()
-        {
-            Setup();
-
-            //TODO Localize
-            VideoInfo = "Selecting video";
-
-            try
-            {
-                var mediaFile = await _mediaPicker.SelectVideoAsync(new VideoMediaStorageOptions());
-
-                //TODO Localize
-                VideoInfo = mediaFile != null
-                                ? string.Format("Your video size {0} MB", ConvertBytesToMegabytes(mediaFile.Source.Length))
-                                : "No video was selected";
-            }
-            catch (System.Exception ex)
-            {
-                if (ex is TaskCanceledException)
-                {
-                    //TODO Localize
-                    VideoInfo = "Selecting video canceled";
-                }
-                else
-                {
-                    VideoInfo = ex.Message;
-                }
             }
         }
 

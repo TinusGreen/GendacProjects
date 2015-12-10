@@ -8,7 +8,10 @@ using MappingApp.ViewModel;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using MappingApp.WinPhone.Resources;
+using XLabs.Forms;
 using XLabs.Ioc;
+using XLabs.Platform.Device;
+using XLabs.Platform.Mvvm;
 using XLabs.Platform.Services;
 using XLabs.Platform.Services.Geolocation;
 using XLabs.Platform.Services.Media;
@@ -59,7 +62,7 @@ namespace MappingApp.WinPhone
                 // and consume battery power when the user is not using the phone.
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
-
+            SetIoC();
         }
 
         // Code to execute when the application is launching (eg, from Start)
@@ -89,6 +92,8 @@ namespace MappingApp.WinPhone
         // Code to execute if a navigation fails
         private void RootFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)
         {
+            if (e.Exception != null)
+                Debug.WriteLine(e.Exception.ToString());
             if (Debugger.IsAttached)
             {
                 // A navigation has failed; break into the debugger
@@ -99,6 +104,8 @@ namespace MappingApp.WinPhone
         // Code to execute on Unhandled Exceptions
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
+            if (e.ExceptionObject != null)
+                Debug.WriteLine(e.ExceptionObject.ToString());
             if (Debugger.IsAttached)
             {
                 // An unhandled exception has occurred; break into the debugger
@@ -119,9 +126,9 @@ namespace MappingApp.WinPhone
                 return;
 
             //Set 
-            var container = ViewModelLocator.Init();
-            container.Register<IGeolocator, Geolocator>();
-            container.Register<IMediaPicker, MediaPicker>();
+      //      var container = ViewModelLocator.Init();
+      //      container.Register<IGeolocator, Geolocator>();
+      //      container.Register<IMediaPicker, MediaPicker>();
             // Create the frame but don't set it as RootVisual yet; this allows the splash
             // screen to remain active until the application is ready to render.
             RootFrame = new PhoneApplicationFrame();
@@ -228,6 +235,25 @@ namespace MappingApp.WinPhone
 
                 throw;
             }
+        }
+
+        /// <summary>
+		/// Sets Inversion of Control.
+		/// </summary>
+		private void SetIoC()
+        {
+            var resolverContainer = new SimpleContainer();
+
+            var app = new XFormsAppWP();
+
+            app.Init(this);
+
+            resolverContainer.Register(t => WindowsPhoneDevice.CurrentDevice)
+                .Register<IDependencyContainer>(t => resolverContainer)
+                .Register<IXFormsApp>(app)
+                .Register<IGeolocator, Geolocator>()
+                .Register<IMediaPicker, MediaPicker>();
+            Resolver.SetResolver(resolverContainer.GetResolver());
         }
     }
 }

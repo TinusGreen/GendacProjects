@@ -1,20 +1,46 @@
-﻿using MappingApp.ViewModel;
+﻿using System;
+using MappingApp.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
+using XLabs.Forms.Mvvm;
+using XLabs.Ioc;
 
 namespace MappingApp.View
 {
     public partial class MapView
     {
-        private readonly MapViewModel _mapViewModel;
+        private MapViewModel _mapViewModel;
         private Pin _previousPin;
 
         public MapView()
         {
             InitializeComponent();
-            _mapViewModel = ViewModelLocator.Map;
-            BindingContext = _mapViewModel;
-            _mapViewModel.PositionChanged += (sender, args) => Device.BeginInvokeOnMainThread(UpdatePosition);
+          //  _mapViewModel = Resolver.Resolve<MapViewModel>();
+           // _mapViewModel.PositionChanged += (sender, args) => Device.BeginInvokeOnMainThread(UpdatePosition);
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _mapViewModel = BindingContext as MapViewModel;
+            if (_mapViewModel != null)
+            {
+                _mapViewModel.PositionChanged += OnPositionChange;
+            }
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            if (_mapViewModel != null)
+            {
+                _mapViewModel.PositionChanged -= OnPositionChange;
+            }
+        }
+
+        private void OnPositionChange(object sender, EventArgs args)
+        {
+            Device.BeginInvokeOnMainThread(UpdatePosition);
         }
 
         private void UpdatePosition()

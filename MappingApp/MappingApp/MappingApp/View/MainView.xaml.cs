@@ -13,7 +13,7 @@ namespace MappingApp.View
         public MainView()
         {
             InitializeComponent();
-            BindingContext = ViewModelLocator.Main;
+          //  BindingContext = ViewModelLocator.Main;
         }
     }
 }

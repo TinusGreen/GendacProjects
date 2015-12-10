@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MappingApp.View.MainView">
   <StackLayout>
-    <Label Text="{Binding Address}" VerticalOptions="Center" HorizontalOptions="Center" />
-    <Button Text="{Binding NavigateToViewModelButtonText}" Command="{Binding NavigateToViewModel}"/>
+    <Label Text="{Binding Heading}" VerticalOptions="Center" HorizontalOptions="Center" />
+    <Button Text="Mapping Application" Command="{Binding NavigateToMappingView}"/>
+    <Button Text="Communication Systems" Command="{Binding NavigateToCommunicationView}"/>
+    <Button Text="Computer Vision" Command="{Binding NavigateToComputerView}"/>
   </StackLayout>
 </ContentPage>

@@ -6,6 +6,7 @@
     <Label Text="{Binding Heading}" VerticalOptions="Center" HorizontalOptions="Center" />
     <Button Text="Mapping Application" Command="{Binding NavigateToMappingView}"/>
     <Button Text="Communication Systems" Command="{Binding NavigateToCommunicationView}"/>
+    <Button Text="Code Scanner" Command="{Binding NavigateToCodeView}"/>
     <Button Text="Computer Vision" Command="{Binding NavigateToComputerView}"/>
   </StackLayout>
 </ContentPage>

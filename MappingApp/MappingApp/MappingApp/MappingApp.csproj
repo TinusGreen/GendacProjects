@@ -40,6 +40,7 @@
     <Compile Include="Services\ExtendedPicker.cs" />
     <Compile Include="ViewModel\CameraViewModel.cs" />
     <Compile Include="ViewModel\CodeScannerViewModel.cs" />
+    <Compile Include="ViewModel\CommunicationViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MapViewModel.cs" />
     <Compile Include="View\CameraView.xaml.cs">
@@ -47,6 +48,9 @@
     </Compile>
     <Compile Include="View\CodeScannerView.xaml.cs">
       <DependentUpon>CodeScannerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CommunicationView.xaml.cs">
+      <DependentUpon>CommunicationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
@@ -130,6 +134,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="View\CodeScannerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\CommunicationView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

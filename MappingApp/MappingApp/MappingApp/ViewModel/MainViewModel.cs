@@ -13,7 +13,7 @@ namespace MappingApp.ViewModel
         public MainViewModel()
         {
             NavigateToMappingView = new Command(() => Navigation.PushAsync<MapViewModel>());
-            NavigateToCommunicationView = new Command(() => Navigation.PushAsync<CameraViewModel>());
+            NavigateToCommunicationView = new Command(() => Navigation.PushAsync<CommunicationViewModel>());
             NavigateToComputerView = new Command(() => Navigation.PushAsync<CameraViewModel>());
             NavigateToCodeView = new Command(() => Navigation.PushAsync<CodeScannerViewModel>());
         }

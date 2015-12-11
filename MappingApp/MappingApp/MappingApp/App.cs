@@ -37,6 +37,7 @@ namespace MappingApp
             ViewFactory.Register<MapView, MapViewModel>();
             ViewFactory.Register<View.CameraView, CameraViewModel>();
             ViewFactory.Register<CodeScannerView, CodeScannerViewModel>();
+            ViewFactory.Register<CommunicationView, CommunicationViewModel>();
 
             var mainPage = (Page)ViewFactory.CreatePage(typeof(MainViewModel));
 

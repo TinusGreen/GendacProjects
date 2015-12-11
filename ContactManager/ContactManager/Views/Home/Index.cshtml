@@ -1,7 +1,15 @@
 ﻿<div id="body">
     <ul id="contacts"></ul>
+
 </div>
 
+<h2>Search by ID</h2>
+<input type="text" id="prodId" size="5"/>
+<input type="text" id="prodUser" size="5" />
+<input type="text" id="prodLat" size="5"/>
+<input type="text" id="prodLong" size="5" />
+<input type="button" value="Lookup" onclick="find();"/>
+<p id="product" />
 <form id="saveContactForm" method="post">
     <h3>Create a new Contact</h3>
     <p>
@@ -26,25 +34,40 @@
 
 @section scripts{
     <script type="text/javascript">
-$(function()
-{
-        $.getJSON('/api/contact', function(contactsJsonPayload)
-        {
-            $(contactsJsonPayload).each(function(i, item)
-            {
-                $('#contacts').append('<li>' + item.Name + ' Long: ' + item.Long + ' Lat: ' + item.Lat + '</li>');
+        $(function() {
+            $.getJSON('/api/contact', function(contactsJsonPayload) {
+                $(contactsJsonPayload).each(function(i, item) {
+                    $('#contacts').append('<li>' + item.Name + ' Long: ' + item.Long + ' Lat: ' + item.Lat + '</li>');
+                });
             });
         });
-});
 
-$('#saveContact').click(function () {
-    $.post("api/contact",
-          $("#saveContactForm").serialize(),
-          function (value) {
-              $('#contacts').append('<li>' + value.Name +  ' Long: ' + value.Long + ' Lat: ' + value.Lat + '</li>');
-          },
-          "json"
-    );
-});
+        $('#saveContact').click(function() {
+            $.post("api/contact",
+                $("#saveContactForm").serialize(),
+                function(value) {
+                    $('#contacts').append('<li>' + value.Name + ' Long: ' + value.Long + ' Lat: ' + value.Lat + '</li>');
+                },
+                "json"
+            );
+        });
+
+        function formatItem(item) {
+            return item.Name + ' Long: ' + item.Long + ' Lat: ' + item.Lat;
+        }
+
+        function find() {
+            var id = $('#prodId').val();
+            var lat = $('#prodLat').val();
+            var lon = $('#prodLong').val();
+            var user = $('#prodUser').val();
+            $.getJSON('/api/contact/', {Id : id, User : user, Lat : lat, Lon : lon})
+                .done(function(data) {
+                    $('#product').text(formatItem(data));
+                })
+                .fail(function(jqXHR, textStatus, err) {
+                    $('#product').text('Error: ' + err);
+                });
+        }
     </script>
 }

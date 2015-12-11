@@ -22,7 +22,6 @@ namespace MappingApp.ViewModel
         public Command NavigateToCommunicationView { get; }
         public Command NavigateToComputerView { get; }
         public Command NavigateToCodeView { get; }
-     
 
         public string Heading
         {

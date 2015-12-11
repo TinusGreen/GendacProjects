@@ -64,6 +64,37 @@ namespace ContactManager.Services
             return false;
         }
 
+        public void updateContact(int id, string username, string lat, string lon)
+        {
+            var ctx = HttpContext.Current;
+            var currentData = ((Contact[])ctx.Cache[CacheKey]).ToList();
+            bool isFound = false;
+            foreach (var x in currentData)
+            {
+                if (x.Id == id)
+                {
+                    //Found
+                    x.Lat = lat;
+                    x.Long = lon;
+                    isFound = true;
+                } 
+                
+            }
+
+            if (isFound == false)
+            {
+                //New user
+                Contact tempContact = new Contact();
+                tempContact.Id = id;
+                tempContact.Name = username;
+                tempContact.Lat = lat;
+                tempContact.Long = lon;
+                currentData.Add(tempContact);
+            }
+            ctx.Cache[CacheKey] = currentData.ToArray();
+
+        }
+
 
 
         public Contact[] GetAllContacts()

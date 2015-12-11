@@ -8,6 +8,5 @@
     <Button Text="Communication Systems" Command="{Binding NavigateToCommunicationView}"/>
     <Button Text="Code Scanner" Command="{Binding NavigateToCodeView}"/>
     <Button Text="Computer Vision" Command="{Binding NavigateToComputerView}"/>
-    <Button Text="Exit (NOT WORKING)" Command="{Binding NavigateToExit}"/>
   </StackLayout>
 </ContentPage>

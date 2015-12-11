@@ -20,7 +20,10 @@ namespace MappingApp.ViewModel
         public CodeScannerViewModel()
         {
             CodeScan = new Command(async () => await ScanCode());
+            NavigateToBack = new Command(() => Navigation.PopAsync());
         }
+
+        public Command NavigateToBack { get; }
 
         public Command CodeScan { get; private set; }
 

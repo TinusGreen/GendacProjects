@@ -17,6 +17,13 @@ namespace MappingApp.ViewModel
 {
     class CommunicationViewModel : XLabs.Forms.Mvvm.ViewModel
     {
+        public CommunicationViewModel()
+        {
+            NavigateToBack = new Command(() => Navigation.PopAsync());
+        }
+
+        public Command NavigateToBack { get; }
+
         private ObservableCollection<String> _menuOptions = new ObservableCollection<string>();
 
         private string _status;

@@ -68,8 +68,11 @@ namespace MappingApp.ViewModel
         public CameraViewModel()
         {
             Setup();
-            
+            NavigateToBack = new Command(() => Navigation.PopAsync());
+
         }
+
+        public Command NavigateToBack { get; }
 
         public string Heading
         {
@@ -99,8 +102,9 @@ namespace MappingApp.ViewModel
             {
                 if (_menuOptions.Count == 0)
                 {
-                    _menuOptions.Add("Hello World");
-                    _menuOptions.Add("Bla Bla");
+                    _menuOptions.Add("ID");
+                    _menuOptions.Add("License");
+                    _menuOptions.Add("Car number plate");
                 }
                 return _menuOptions;
             }

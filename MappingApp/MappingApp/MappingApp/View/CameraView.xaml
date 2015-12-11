@@ -9,6 +9,7 @@
       <controls:ExtendedPicker ItemsSource="{Binding MenuOptions}" SelectedItem="{Binding SelectedOption, Mode=TwoWay}"></controls:ExtendedPicker>
       <Button x:Name="testButton" Text="Take Picture" Command="{Binding TakePictureCommand}" />
       <Button Text="Select Image from Picture Library" Command="{Binding SelectPictureCommand}" />
+      <Button Text="Back to Main Page" Command="{Binding NavigateToBack}"/>
       <Image Source="{Binding ImageSource}" VerticalOptions="CenterAndExpand" />
       <Entry Text="{Binding Info}" VerticalOptions="CenterAndExpand" />
     </StackLayout>

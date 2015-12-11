@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using Xamarin.Forms;
 using XLabs.Ioc;
 using XLabs.Platform.Services.Geolocation;
 using Position = Xamarin.Forms.Maps.Position;
@@ -17,7 +18,13 @@ namespace MappingApp.ViewModel
         {
             _geolocator = Resolver.Resolve<IGeolocator>();
             GetPosition();
+            NavigateToBack = new Command(() => Navigation.PopAsync());
         }
+
+
+
+        public Command NavigateToBack { get; }
+
 
         public string Heading
         {

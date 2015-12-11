@@ -8,6 +8,7 @@
     <Label Text="{Binding Heading}" HorizontalOptions="Center" />
     <controls:ExtendedPicker ItemsSource="{Binding MenuOptions}" SelectedItem="{Binding SelectedOption, Mode=TwoWay}"></controls:ExtendedPicker>
     <Button x:Name="testButton" Text="Activate" Command="{Binding ActivateCommand}" />
+    <Button Text="Back to Main Page" Command="{Binding NavigateToBack}"/>
   </StackLayout>
 
   

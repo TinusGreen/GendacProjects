@@ -16,7 +16,7 @@ namespace MappingApp.View
     {
         private MapViewModel _mapViewModel;
         private Pin _previousPin;
-        const string apiUrl = @"http://172.28.2.83:56302/api/contact";
+        const string apiUrl = @"http://41.180.4.119:56302/api/contact";
 
         public MapView()
         {
@@ -99,7 +99,7 @@ namespace MappingApp.View
             string t3 = _previousPin.Position.Latitude.ToString();
             string t4 = _previousPin.Position.Longitude.ToString();
 
-            var uri = string.Format(@"http://172.28.2.83:56302/api/contact?Id={0}&User={1}&Lat={2}&Lon={3}", t1, t2, t3, t4);
+            var uri = string.Format(@"http://41.180.4.119:56302/api/contact?Id={0}&User={1}&Lat={2}&Lon={3}", t1, t2, t3, t4);
             var response2 = await webClient.GetStringAsync(uri);
         }
 
@@ -114,14 +114,18 @@ namespace MappingApp.View
                 var people = JsonConvert.DeserializeObject<List<Person>>(response);
 
                 //Remove old pins 
-                _map.Pins.Clear();
+                //_map.Pins.Clear();
 
                 //Convert the persons to pins.
                 foreach (Person p in people)
                 {
                     Pin temp = new Pin();
                     temp.Label = p.Name;
-                    Position pTemp = new Position(Convert.ToDouble(p.Lat), Convert.ToDouble(p.Long));
+                    double lat = double.Parse(p.Lat, System.Globalization.CultureInfo.InvariantCulture);
+                    double lon = double.Parse(p.Long, System.Globalization.CultureInfo.InvariantCulture);
+                  //  double lat = Convert.ToDouble(p.Lat);
+                 //   double lon = Convert.ToDouble(p.Long);
+                    Position pTemp = new Position(lat, lon);
                     temp.Position = pTemp;
                     temp.Type = PinType.Generic;
                     _map.Pins.Add(temp);

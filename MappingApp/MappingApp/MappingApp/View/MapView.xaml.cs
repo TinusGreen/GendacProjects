@@ -116,16 +116,14 @@ namespace MappingApp.View
                 var people = JsonConvert.DeserializeObject<List<Person>>(response);
 
                 //Remove old pins 
-<<<<<<< HEAD
-              //  _map.Pins.Clear();
-=======
+                //  _map.Pins.Clear();
+
                 //_map.Pins.Clear();
->>>>>>> 64cd4717bdc84e0b3e0b889a2cc3b5fdf6e15fb0
+
 
                 //Convert the persons to pins.
                 foreach (Person p in people)
                 {
-<<<<<<< HEAD
                     if (p.Name != null)
                     {
                         Pin temp = new Pin();
@@ -135,20 +133,7 @@ namespace MappingApp.View
                         temp.Type = PinType.Generic;
                         _map.Pins.Add(temp);
                     }
-=======
-                    Pin temp = new Pin();
-                    temp.Label = p.Name;
-                    double lat = double.Parse(p.Lat, System.Globalization.CultureInfo.InvariantCulture);
-                    double lon = double.Parse(p.Long, System.Globalization.CultureInfo.InvariantCulture);
-                  //  double lat = Convert.ToDouble(p.Lat);
-                 //   double lon = Convert.ToDouble(p.Long);
-                    Position pTemp = new Position(lat, lon);
-                    temp.Position = pTemp;
-                    temp.Type = PinType.Generic;
-                    _map.Pins.Add(temp);
->>>>>>> 64cd4717bdc84e0b3e0b889a2cc3b5fdf6e15fb0
                 }
-
             }
             catch (Exception e)
             {

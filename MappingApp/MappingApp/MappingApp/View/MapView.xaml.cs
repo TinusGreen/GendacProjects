@@ -61,6 +61,8 @@ namespace MappingApp.View
                 _previousPin = new Pin();
             }
 
+            _map.Pins.Clear();
+
             var zoomLat = _map.VisibleRegion == null ? 6.0 : _map.VisibleRegion.LatitudeDegrees;
             var zoomLon = _map.VisibleRegion == null ? 6.0 : _map.VisibleRegion.LongitudeDegrees;
             var zoomRad = _map.VisibleRegion == null ? 6.0 : _map.VisibleRegion.Radius.Miles;
@@ -114,17 +116,20 @@ namespace MappingApp.View
                 var people = JsonConvert.DeserializeObject<List<Person>>(response);
 
                 //Remove old pins 
-                _map.Pins.Clear();
+              //  _map.Pins.Clear();
 
                 //Convert the persons to pins.
                 foreach (Person p in people)
                 {
-                    Pin temp = new Pin();
-                    temp.Label = p.Name;
-                    Position pTemp = new Position(Convert.ToDouble(p.Lat), Convert.ToDouble(p.Long));
-                    temp.Position = pTemp;
-                    temp.Type = PinType.Generic;
-                    _map.Pins.Add(temp);
+                    if (p.Name != null)
+                    {
+                        Pin temp = new Pin();
+                        temp.Label = p.Name;
+                        Position pTemp = new Position(Convert.ToDouble(p.Lat), Convert.ToDouble(p.Long));
+                        temp.Position = pTemp;
+                        temp.Type = PinType.Generic;
+                        _map.Pins.Add(temp);
+                    }
                 }
 
             }

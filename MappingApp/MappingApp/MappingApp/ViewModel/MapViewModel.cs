@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
+using MappingApp.Services;
+using Newtonsoft.Json;
 using Xamarin.Forms;
 using XLabs.Ioc;
 using XLabs.Platform.Services.Geolocation;
@@ -11,17 +15,37 @@ namespace MappingApp.ViewModel
     {
         private readonly IGeolocator _geolocator;
         private string _heading = "Mapping System";
-
+        const string apiUrl = @"http://172.28.2.83:56302/api/contact";
         private Position _userPosition;
 
         public MapViewModel()
         {
             _geolocator = Resolver.Resolve<IGeolocator>();
+            GetWeb();
             GetPosition();
             NavigateToBack = new Command(() => Navigation.PopAsync());
         }
 
+        private async void GetWeb()
+        {
+            HttpClient webClient = new HttpClient();
+            try
+            {
+                //var response = await webClient.GetAsync(apiUrl);
+            //    List<Person> people = new List<Person>();
+                var response = await webClient.GetStringAsync(apiUrl);
+             //   JsonConvert.PopulateObject(response, people);
+                var people = JsonConvert.DeserializeObject<List<Person>>(response);
+                //JSON.stringify(response);
 
+
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.ToString());
+            }
+
+        }
 
         public Command NavigateToBack { get; }
 

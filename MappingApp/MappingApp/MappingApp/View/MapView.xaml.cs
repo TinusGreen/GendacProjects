@@ -1,5 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using MappingApp.Services;
 using MappingApp.ViewModel;
+using Newtonsoft.Json;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using XLabs.Forms.Mvvm;
@@ -11,6 +16,7 @@ namespace MappingApp.View
     {
         private MapViewModel _mapViewModel;
         private Pin _previousPin;
+        const string apiUrl = @"http://172.28.2.83:56302/api/contact";
 
         public MapView()
         {
@@ -25,6 +31,7 @@ namespace MappingApp.View
             _mapViewModel = BindingContext as MapViewModel;
             if (_mapViewModel != null)
             {
+                GetWeb();
                 _mapViewModel.PositionChanged += OnPositionChange;
             }
         }
@@ -54,12 +61,6 @@ namespace MappingApp.View
                 _previousPin = new Pin();
             }
 
-            //Add the pin.
-            Position pinPos = new Position(_mapViewModel.UserPosition.Latitude, _mapViewModel.UserPosition.Longitude);
-            _previousPin.Position = pinPos;
-            _previousPin.Label = "My Location";
-            _previousPin.Type = PinType.Generic;
-
             var zoomLat = _map.VisibleRegion == null ? 6.0 : _map.VisibleRegion.LatitudeDegrees;
             var zoomLon = _map.VisibleRegion == null ? 6.0 : _map.VisibleRegion.LongitudeDegrees;
             var zoomRad = _map.VisibleRegion == null ? 6.0 : _map.VisibleRegion.Radius.Miles;
@@ -67,8 +68,48 @@ namespace MappingApp.View
             _map.MoveToRegion(new MapSpan(_mapViewModel.UserPosition, zoomLat, zoomLon ));
 
             // _map.MoveToRegion(MapSpan.FromCenterAndRadius(_mapViewModel.UserPosition, Distance.FromMiles(zoomRad)));
-            _map.Pins.Add(_previousPin);
             MapSpan temp = _map.VisibleRegion;
+
+            GetWeb();
+
+            //Add the pin.
+            Position pinPos = new Position(_mapViewModel.UserPosition.Latitude, _mapViewModel.UserPosition.Longitude);
+            _previousPin.Position = pinPos;
+            _previousPin.Label = "My Location";
+            _previousPin.Type = PinType.Generic;
+            _map.Pins.Add(_previousPin);
+        }
+
+        private async void GetWeb()
+        {
+            HttpClient webClient = new HttpClient();
+            try
+            {
+                //var response = await webClient.GetAsync(apiUrl);
+                //    List<Person> people = new List<Person>();
+                var response = await webClient.GetStringAsync(apiUrl);
+                var people = JsonConvert.DeserializeObject<List<Person>>(response);
+
+                //Remove old pins 
+                _map.Pins.Clear();
+
+                //Convert the persons to pins.
+                foreach (Person p in people)
+                {
+                    Pin temp = new Pin();
+                    temp.Label = p.Name;
+                    Position pTemp = new Position(Convert.ToDouble(p.Lat), Convert.ToDouble(p.Long));
+                    temp.Position = pTemp;
+                    temp.Type = PinType.Generic;
+                    _map.Pins.Add(temp);
+                }
+
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.ToString());
+            }
+
         }
     }
 }

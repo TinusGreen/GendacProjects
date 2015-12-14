@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
 using MappingApp.Services;
+using MappingApp.View;
 using Newtonsoft.Json;
 using Xamarin.Forms;
 using XLabs.Ioc;
@@ -21,7 +22,7 @@ namespace MappingApp.ViewModel
         public MapViewModel()
         {
             _geolocator = Resolver.Resolve<IGeolocator>();
-            GetWeb();
+           // GetWeb();
             GetPosition();
             NavigateToBack = new Command(() => Navigation.PopAsync());
         }
@@ -34,10 +35,9 @@ namespace MappingApp.ViewModel
                 //var response = await webClient.GetAsync(apiUrl);
             //    List<Person> people = new List<Person>();
                 var response = await webClient.GetStringAsync(apiUrl);
-             //   JsonConvert.PopulateObject(response, people);
                 var people = JsonConvert.DeserializeObject<List<Person>>(response);
-                //JSON.stringify(response);
 
+                
 
             }
             catch (Exception e)

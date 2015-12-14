@@ -78,6 +78,29 @@ namespace MappingApp.View
             _previousPin.Label = "My Location";
             _previousPin.Type = PinType.Generic;
             _map.Pins.Add(_previousPin);
+
+            UpdateServerUser();
+        }
+
+        private async void UpdateServerUser()
+        {
+            HttpClient webClient = new HttpClient();
+            string name = UserN.Text;
+            string t1 = "1";
+            string t2 = "test";
+            if (name == "")
+            {
+                t2 = _previousPin.Label;
+            }
+            else
+            {
+                t2 = name;
+            }
+            string t3 = _previousPin.Position.Latitude.ToString();
+            string t4 = _previousPin.Position.Longitude.ToString();
+
+            var uri = string.Format(@"http://172.28.2.83:56302/api/contact?Id={0}&User={1}&Lat={2}&Lon={3}", t1, t2, t3, t4);
+            var response2 = await webClient.GetStringAsync(uri);
         }
 
         private async void GetWeb()

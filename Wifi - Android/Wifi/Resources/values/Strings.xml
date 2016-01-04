@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Hello">Hello World2, Click Me!</string>
+    <string name="ApplicationName">Wifi RSSI Test</string>
+    <string name="Scan">Scan for Wi-Fi networks</string>
+</resources>

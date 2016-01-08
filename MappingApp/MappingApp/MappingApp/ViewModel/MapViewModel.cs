@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
 using MappingApp.Services;
+using System.Net;
 using MappingApp.View;
 using Newtonsoft.Json;
 using Xamarin.Forms;
@@ -23,8 +24,8 @@ namespace MappingApp.ViewModel
         {
             _geolocator = Resolver.Resolve<IGeolocator>();
            // GetWeb();
-            GetPosition();
-            NavigateToBack = new Command(() => Navigation.PopAsync());
+            GetPosition();            
+            NavigateToBack = new Command(() => Navigation.PopAsync());            
         }
 
         private async void GetWeb()

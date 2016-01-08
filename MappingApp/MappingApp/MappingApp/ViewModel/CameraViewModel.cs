@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-
+using System.Net;
 using Xamarin.Forms;
 
 using XLabs.Forms.Mvvm;
@@ -195,6 +195,7 @@ namespace MappingApp.ViewModel
         /// <returns>Take Picture Task.</returns>
         private async Task<MediaFile> TakePicture()
         {
+              
             Setup();
 
             ImageSource = null;
@@ -225,6 +226,7 @@ namespace MappingApp.ViewModel
 
                 return null;
             }, _scheduler);
+            
         }
 
         /// <summary>

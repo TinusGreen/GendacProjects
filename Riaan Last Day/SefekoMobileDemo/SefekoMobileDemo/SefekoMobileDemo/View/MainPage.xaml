@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SefekoMobileDemo.View.MainPage">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		<Label Text="{Binding MainText}"
+					 VerticalOptions="Center"
+					 HorizontalOptions="Center"
+					 FontSize="22"
+					 FontAttributes="Bold"
+					 Grid.ColumnSpan="3"/>
+		<Button Text="SCAN"
+						Command="{Binding Scan}"
+						BackgroundColor="{Binding ScanColor}"
+						VerticalOptions="Fill"
+						HorizontalOptions="Fill"
+						Grid.Row="1"
+						Grid.Column="1"
+						/>
+		<Button Text="CALL"
+						Command="{Binding CallMe}"
+						BackgroundColor="{Binding CallMeColor}"
+						VerticalOptions="Fill"
+						HorizontalOptions="Fill"
+						Grid.Row="2"
+						Grid.Column="1"
+						IsEnabled="{Binding EnableButtons}"/>
+
+		<Button Text="PANIC"
+						Command="{Binding Panic}"
+						BackgroundColor="{Binding PanicColor}"
+						VerticalOptions="Fill"
+						HorizontalOptions="Fill"
+						Grid.Row="3"
+						Grid.Column="1"
+						IsEnabled="{Binding EnableButtons}"/>
+		<Button Text="Settings"
+						Command="{Binding Settings}"
+						Grid.Row="4"
+						Grid.Column="1"/>
+	</Grid>
+	
+</ContentPage>

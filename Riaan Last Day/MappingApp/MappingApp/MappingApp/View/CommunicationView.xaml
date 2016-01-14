@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             x:Class="MappingApp.View.CommunicationView">
+  
+  <StackLayout>
+    <Label Text="{Binding Heading}" HorizontalOptions="Center" />
+    <controls:ExtendedPicker ItemsSource="{Binding MenuOptions}" SelectedItem="{Binding SelectedOption, Mode=TwoWay}"></controls:ExtendedPicker>
+    <Button x:Name="testButton" Text="Activate" Command="{Binding ActivateCommand}" />
+    <Button Text="Back to Main Page" Command="{Binding NavigateToBack}"/>
+  </StackLayout>
+
+  
+  
+  
+</ContentPage>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+  xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+  x:Class="MappingApp.View.MapView">
+  <StackLayout>
+    <Label x:Name="Bla" Text="{Binding Heading}" VerticalOptions="Start" HorizontalOptions="Start" />
+    <Entry x:Name="UserN" Text="{Binding UserName}" />
+    <Button Text="Get Position" Command="{Binding GetPosition}" />
+    <maps:Map WidthRequest="320" HeightRequest="200" x:Name="_map" MapType="Street" IsShowingUser="True" />
+    <Button Text="Back to Main Page" Command="{Binding NavigateToBack}"/>
+  </StackLayout>
+</ContentPage>

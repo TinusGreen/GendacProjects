@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
+  <Identity Name="bf956d37-731c-4707-9615-f90dbc4647e3" Publisher="CN=tinusg" Version="1.0.0.0" />
+  <mp:PhoneIdentity PhoneProductId="2dca49ea-fadf-4d00-a44f-0381d29bba39" PhonePublisherId="47c25e07-6de1-4c64-8d6a-e688b1246179" />
+  <Properties>
+    <DisplayName>MappingApp.WinPhone</DisplayName>
+    <PublisherDisplayName>tinusg</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.3.1</OSMinVersion>
+    <OSMaxVersionTested>6.3.1</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="x2dca49eayfadfy4d00ya44fy0381d29bba39x" Executable="AGHost.exe" EntryPoint="MainPage.xaml">
+      <m3:VisualElements DisplayName="MappingApp.WinPhone" Square150x150Logo="Assets\SquareTile150x150.png" Square44x44Logo="Assets\Logo.png" Description="MappingApp.WinPhone" ForegroundText="light" BackgroundColor="#464646">
+        <m3:DefaultTile Square71x71Logo="Assets\SquareTile71x71.png">
+        </m3:DefaultTile>
+        <m3:SplashScreen Image="SplashScreenImage.jpg" />
+      </m3:VisualElements>
+      <Extensions>
+        <Extension Category="windows.backgroundTasks" EntryPoint="AgHost.BackgroundTask">
+          <BackgroundTasks>
+            <Task Type="systemEvent" />
+          </BackgroundTasks>
+        </Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="musicLibrary" />
+    <Capability Name="picturesLibrary" />
+    <Capability Name="videosLibrary" />
+    <Capability Name="sharedUserCertificates" />
+    <Capability Name="removableStorage" />
+    <Capability Name="internetClientServer" />
+    <Capability Name="enterpriseAuthentication" />
+    <m3:Capability Name="contacts" />
+    <m3:Capability Name="appointments" />
+    <DeviceCapability Name="location" />
+    <DeviceCapability Name="webcam" />
+    <DeviceCapability Name="proximity" />
+    <DeviceCapability Name="microphone" />
+  </Capabilities>
+  <Extensions>
+    <Extension Category="windows.activatableClass.inProcessServer">
+      <InProcessServer>
+        <Path>AgHostSvcs.dll</Path>
+        <ActivatableClass ActivatableClassId="AgHost.BackgroundTask" ThreadingModel="both" />
+      </InProcessServer>
+    </Extension>
+  </Extensions>
+</Package>

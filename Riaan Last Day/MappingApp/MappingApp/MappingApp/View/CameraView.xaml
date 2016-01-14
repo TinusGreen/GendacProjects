@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:controls="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+			 x:Class="MappingApp.View.CameraView">
+  <ContentPage.Content>
+    <StackLayout>
+      <Label Text="{Binding Heading}" />
+      <controls:ExtendedPicker ItemsSource="{Binding MenuOptions}" SelectedItem="{Binding SelectedOption, Mode=TwoWay}"></controls:ExtendedPicker>
+      <Button x:Name="testButton" Text="Take Picture" Command="{Binding TakePictureCommand}" />
+      <Button Text="Select Image from Picture Library" Command="{Binding SelectPictureCommand}" />
+      <Button Text="Back to Main Page" Command="{Binding NavigateToBack}"/>
+      <Image Source="{Binding ImageSource}" VerticalOptions="CenterAndExpand" />
+      <Entry Text="{Binding Info}" VerticalOptions="CenterAndExpand" />
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>
